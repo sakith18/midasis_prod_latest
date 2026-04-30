@@ -1,0 +1,135 @@
+{
+  "theme": "LIGHT",
+  "archetype": "Swiss & High-Contrast",
+  "brand_colors": {
+    "primary": "#2478C5",
+    "accent": "#E87722",
+    "white": "#FFFFFF",
+    "light_blue_tint": "#EBF4FB",
+    "body_text": "#4A4A4A",
+    "dark_navy": "#0D2B4E"
+  },
+  "typography": {
+    "heading_font": "Montserrat, sans-serif",
+    "body_font": "Poppins, sans-serif",
+    "h1": "text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter text-dark_navy",
+    "h2": "text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-dark_navy",
+    "h3": "text-xl sm:text-2xl font-bold text-dark_navy",
+    "body": "text-base text-body_text leading-relaxed font-normal",
+    "label": "text-xs font-bold uppercase tracking-[0.2em] text-accent"
+  },
+  "spacing": {
+    "section_padding_desktop": "py-[80px]",
+    "section_padding_mobile": "py-[48px]",
+    "card_padding": "p-6 md:p-8"
+  },
+  "effects": {
+    "card_shadow": "shadow-[0_4px_20px_rgba(36,120,197,0.10)]",
+    "transition": "transition-all duration-300 ease-in-out",
+    "card_hover_style": "hover:border-t-2 hover:border-t-accent hover:-translate-y-1 bg-white border-t-2 border-transparent"
+  },
+  "layout_rules": {
+    "grid_system": "Use CSS grid with grid-cols-1 for mobile, md:grid-cols-2 or lg:grid-cols-3 for desktop. Spacing gap-6 or gap-8.",
+    "container": "max-w-7xl mx-auto px-6 lg:px-8",
+    "mobile_nav": "Hamburger menu required on mobile sizes."
+  },
+  "sections": [
+    {
+      "id": "nav",
+      "name": "Navigation Bar",
+      "background": "white",
+      "specs": "Sticky top, z-50. Glassmorphism backdrop-blur-md bg-white/90. Hamburger menu for mobile. Smooth scroll links."
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "background": "#EBF4FB",
+      "specs": "Two-column flex/grid. Left: H1 'Where Technology Meets Talent', primary CTA. Right: Animated CSS/SVG tech globe. Bottom: Trust bar with client name badges."
+    },
+    {
+      "id": "about",
+      "name": "About",
+      "background": "#FFFFFF",
+      "specs": "Text section + 4 stat cards. Cards have white bg, large blue numbers, orange bottom borders."
+    },
+    {
+      "id": "us-staffing",
+      "name": "US IT Staffing Section",
+      "background": "#EBF4FB",
+      "specs": "3 staffing model cards in a grid. Inside cards: role chips, work authorization badges. Apply card_hover_style."
+    },
+    {
+      "id": "india-staffing",
+      "name": "India IT Staffing Section",
+      "background": "#FFFFFF",
+      "specs": "3 staffing model cards in a grid. Inside cards: role chips, India location list. Apply card_hover_style."
+    },
+    {
+      "id": "why-choose-us",
+      "name": "Why Choose Midasis",
+      "background": "#EBF4FB",
+      "specs": "6 icon cards in a 3-col grid. Primary blue icons. Apply card_hover_style."
+    },
+    {
+      "id": "services",
+      "name": "Services",
+      "background": "#FFFFFF",
+      "specs": "6 icon cards in a 3-col grid. Primary blue icons. Apply card_hover_style."
+    },
+    {
+      "id": "vision",
+      "name": "Vision Section",
+      "background": "#2478C5",
+      "specs": "Solid primary blue background. White text centered. No orange used here."
+    },
+    {
+      "id": "clients",
+      "name": "Clients Section",
+      "background": "#FFFFFF",
+      "specs": "Styled text-based name badge cards for clients arranged in a wrapping flex container or marquee."
+    },
+    {
+      "id": "contact",
+      "name": "Contact Section",
+      "background": "#EBF4FB",
+      "specs": "3 office address cards side-by-side above or beside a contact form. Form has a dropdown for requirement type. Inputs use white background."
+    },
+    {
+      "id": "footer",
+      "name": "Footer",
+      "background": "#0D2B4E",
+      "specs": "Dark navy background. White text. Multiple columns. Subtle light blue hover on links."
+    }
+  ],
+  "image_assets": {
+    "tech_globe_fallback": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/b6314edf-6f30-4515-8c5b-3b8c96d3244c/images/8e3c10349621118612eb2ecf7eb831917f45bc09c363b3674f7926c955fed7cd.png",
+      "description": "3D wireframe globe for hero section (use as fallback if pure CSS/SVG globe is too complex, or use as subtle background texture in hero)."
+    },
+    "texture_bg": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/b6314edf-6f30-4515-8c5b-3b8c96d3244c/images/ebb8c80db1ce21b11d2825520bdaf39660aa6e10ce355660092f366d47dabc4c.png",
+      "description": "Subtle white frosted glass texture, use in background of hero or white sections if they need depth."
+    },
+    "office_1": {
+      "url": "https://images.pexels.com/photos/5257769/pexels-photo-5257769.jpeg",
+      "description": "Two young professionals collaborating at a modern office workspace. Use for About or Contact section background accents (with heavy opacity overlay)."
+    },
+    "office_2": {
+      "url": "https://images.pexels.com/photos/1181461/pexels-photo-1181461.jpeg",
+      "description": "Women working on laptops in a bright office setting. Good for Staffing section backgrounds or Contact area."
+    }
+  },
+  "instructions_to_main_agent": [
+    "Strictly enforce the orange-as-accent-only rule. NEVER use orange as a background fill for large sections, only for hover borders, underlines, or small text highlights.",
+    "Section padding must be exactly py-[80px] on desktop and py-[48px] on mobile. DO NOT use standard py-20/py-12 if they do not map to exactly 80px/48px in Tailwind config. Use arbitrary values to be safe.",
+    "All cards must use the EXACT shadow definition: shadow-[0_4px_20px_rgba(36,120,197,0.10)].",
+    "Cards MUST have a transparent top border by default that turns to #E87722 on hover using transition-all duration-300 ease-in-out.",
+    "Implement smooth scrolling via CSS (html { scroll-behavior: smooth; }).",
+    "Hero section MUST include an animated tech globe. Build this using CSS/SVG animations or Framer Motion.",
+    "Use Lucide-react for all standard icons.",
+    "Ensure the fonts (Montserrat for headings, Poppins for body) are imported from Google Fonts in the main index.css or layout.",
+    "All interactive elements MUST include a data-testid attribute in kebab-case format based on role (e.g. data-testid='contact-submit-button').",
+    "Mobile menu must be a functional hamburger that opens a full-screen or sliding nav sheet.",
+    "Ensure all section backgrounds alternate flawlessly between #FFFFFF and #EBF4FB as defined in the section array, except Vision (#2478C5) and Footer (#0D2B4E)."
+  ]
+}
