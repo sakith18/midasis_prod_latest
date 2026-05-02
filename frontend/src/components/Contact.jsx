@@ -18,6 +18,15 @@ const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const OFFICES = [
     {
+        title: "USA — Headquarters",
+        lines: [
+            "2412 Hyde Ct NE,",
+            "Olympia, Washington 98516-3703,",
+            "USA",
+        ],
+        email: "contact@midasistechnologies.com",
+    },
+    {
         title: "India Office",
         lines: [
             "Flat No. 301-B, Park View Edifice,",
@@ -25,15 +34,6 @@ const OFFICES = [
             "Jubilee Main Road, Journalist Colony,",
             "Jubilee Hills, Hyderabad,",
             "Telangana 500033, India",
-        ],
-        email: "contact@midasistechnologies.com",
-    },
-    {
-        title: "USA Office",
-        lines: [
-            "2412 Hyde Ct NE,",
-            "Olympia, Washington 98516-3703,",
-            "USA",
         ],
         email: null,
     },
@@ -93,7 +93,7 @@ export const Contact = () => {
                         Get In Touch
                     </h2>
                     <p className="mt-5 text-base leading-relaxed text-midasis-body sm:text-lg">
-                        Reach out to our offices in India and the USA — or send us a message directly.
+                        Reach out to our headquarters in the USA or our India office — or send us a message directly.
                     </p>
                 </div>
 

@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import USStaffing from "@/components/USStaffing";
 import IndiaStaffing from "@/components/IndiaStaffing";
+import CyberSecurity from "@/components/CyberSecurity";
 import WhyChoose from "@/components/WhyChoose";
 import Services from "@/components/Services";
 import Vision from "@/components/Vision";
@@ -18,6 +19,7 @@ export default function Home() {
             <About />
             <USStaffing />
             <IndiaStaffing />
+            <CyberSecurity />
             <WhyChoose />
             <Services />
             <Vision />

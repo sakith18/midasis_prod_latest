@@ -15,6 +15,7 @@ const NAV_LINKS = [
     { label: "About", href: "#about" },
     { label: "US IT Staffing", href: "#us-staffing" },
     { label: "India IT Staffing", href: "#india-staffing" },
+    { label: "Cybersecurity", href: "#cybersecurity" },
     { label: "Services", href: "#services" },
     { label: "Clients", href: "#clients" },
     { label: "Contact", href: "#contact" },
