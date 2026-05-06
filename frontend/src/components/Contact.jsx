@@ -20,9 +20,10 @@ const OFFICES = [
     {
         title: "USA — Headquarters",
         lines: [
-            "2412 Hyde Ct NE,",
-            "Olympia, Washington 98516-3703,",
-            "USA",
+            "2815 2nd Ave, Suite 550,",
+            "Office No. 518, Register 09,",
+            "Seattle, WA 98121,",
+            "United States",
         ],
         email: "contact@midasistechnologies.com",
     },

@@ -89,7 +89,7 @@ export const Footer = () => {
                         <div className="mt-4 space-y-4">
                             <div className="flex items-start gap-2.5 text-sm text-white/75">
                                 <MapPin size={16} className="mt-0.5 flex-shrink-0 text-midasis-blue" />
-                                <span>2412 Hyde Ct NE, Olympia, Washington 98516-3703, USA <span className="ml-1 text-midasis-orange font-semibold">(HQ)</span></span>
+                                <span>2815 2nd Ave, Suite 550, Office No. 518, Register 09, Seattle, WA 98121, United States <span className="ml-1 text-midasis-orange font-semibold">(HQ)</span></span>
                             </div>
                             <div className="flex items-start gap-2.5 text-sm text-white/75">
                                 <MapPin size={16} className="mt-0.5 flex-shrink-0 text-midasis-blue" />
