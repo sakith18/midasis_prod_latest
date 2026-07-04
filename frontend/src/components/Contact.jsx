@@ -41,9 +41,12 @@ const OFFICES = [
 ];
 
 const REQUIREMENT_TYPES = [
-    "US IT Staffing",
-    "India IT Staffing",
-    "IT Consulting",
+    "IT Staffing — Hire Talent",
+    "Application Development — Start a Project",
+    "SAP Consulting",
+    "DevOps Consulting",
+    "ERP Consulting",
+    "AI / ML Engagement",
     "General Inquiry",
 ];
 
@@ -94,7 +97,7 @@ export const Contact = () => {
                         Get In Touch
                     </h2>
                     <p className="mt-5 text-base leading-relaxed text-midasis-body sm:text-lg">
-                        Reach out to our headquarters in the USA or our India office — or send us a message directly.
+                        Whether you need to hire talent or start a technology project — reach out to our US headquarters or India office, or use the form below.
                     </p>
                 </div>
 

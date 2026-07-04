@@ -23,12 +23,11 @@ export const Vision = () => {
                     People. Ideas. Technology.
                 </h2>
                 <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
-                    Midasis brings people, ideas, and technology together to create superior
-                    solutions for clients who view our partnership as a strategic driver for
-                    their success. We believe meeting client expectations is the foundation
-                    of every solid relationship — achieved by continuously identifying needs
-                    and improving our solutions across a wide spectrum of technologies, tools,
-                    and domains.
+                    Midasis brings people, ideas, and technology together to deliver measurable
+                    outcomes for clients who view our partnership as a strategic driver for their
+                    success. Across IT Staffing, Application Development, SAP, DevOps, ERP, and
+                    AI/ML — we operate as an extension of our clients' teams, continuously
+                    identifying where technology can create competitive advantage.
                 </p>
             </div>
         </section>

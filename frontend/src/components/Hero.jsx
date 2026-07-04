@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Users, Code2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const TRUST_NAMES = [
     "JP Morgan Chase",
@@ -12,10 +13,7 @@ const TRUST_NAMES = [
 
 const TechGlobe = () => (
     <div className="globe-wrapper relative mx-auto aspect-square w-full max-w-[480px]">
-        {/* Soft halo behind globe */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-midasis-blue/10 to-midasis-tint blur-3xl" />
-
-        {/* Globe SVG */}
         <div className="globe relative">
             <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -25,41 +23,13 @@ const TechGlobe = () => (
                         <stop offset="100%" stopColor="#2478C5" stopOpacity="0.15" />
                     </radialGradient>
                 </defs>
-
-                {/* Globe sphere */}
                 <circle cx="200" cy="200" r="160" fill="url(#globe-fill)" stroke="#2478C5" strokeWidth="1.5" opacity="0.9" />
-
-                {/* Latitude lines */}
                 {[40, 80, 120, 160, 200, 240, 280, 320].map((y, i) => (
-                    <ellipse
-                        key={`lat-${i}`}
-                        cx="200"
-                        cy={y}
-                        rx={Math.sqrt(Math.max(0, 160 * 160 - (y - 200) * (y - 200)))}
-                        ry="6"
-                        fill="none"
-                        stroke="#2478C5"
-                        strokeWidth="1"
-                        opacity="0.35"
-                    />
+                    <ellipse key={`lat-${i}`} cx="200" cy={y} rx={Math.sqrt(Math.max(0, 160 * 160 - (y - 200) * (y - 200)))} ry="6" fill="none" stroke="#2478C5" strokeWidth="1" opacity="0.35" />
                 ))}
-
-                {/* Longitude lines */}
                 {[20, 50, 80, 110, 140, 170].map((rx, i) => (
-                    <ellipse
-                        key={`long-${i}`}
-                        cx="200"
-                        cy="200"
-                        rx={rx}
-                        ry="160"
-                        fill="none"
-                        stroke="#2478C5"
-                        strokeWidth="1"
-                        opacity="0.3"
-                    />
+                    <ellipse key={`long-${i}`} cx="200" cy="200" rx={rx} ry="160" fill="none" stroke="#2478C5" strokeWidth="1" opacity="0.3" />
                 ))}
-
-                {/* Connection dots — major cities */}
                 {[
                     { cx: 130, cy: 160, color: "#E87722" },
                     { cx: 280, cy: 175, color: "#2478C5" },
@@ -76,15 +46,11 @@ const TechGlobe = () => (
                         </circle>
                     </g>
                 ))}
-
-                {/* Connection lines */}
                 <path d="M 130 160 Q 200 100 280 175" stroke="#E87722" strokeWidth="1.5" fill="none" strokeDasharray="4 4" opacity="0.6" />
                 <path d="M 240 240 Q 200 290 100 220" stroke="#2478C5" strokeWidth="1.5" fill="none" strokeDasharray="4 4" opacity="0.55" />
                 <path d="M 165 230 Q 250 200 310 130" stroke="#E87722" strokeWidth="1.5" fill="none" strokeDasharray="4 4" opacity="0.5" />
             </svg>
         </div>
-
-        {/* Orbiting rings */}
         <div className="orbit" />
         <div className="orbit orbit-2" />
         <div className="orbit orbit-3" />
@@ -92,6 +58,8 @@ const TechGlobe = () => (
 );
 
 export const Hero = () => {
+    const navigate = useNavigate();
+
     const goTo = (id) => {
         const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -107,38 +75,39 @@ export const Hero = () => {
                 {/* Left content */}
                 <div className="fade-up">
                     <div className="inline-flex items-center gap-2 rounded-full bg-midasis-tint px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-midasis-blue">
-                        <Sparkles size={14} className="text-midasis-orange" />
-                        Global IT Staffing Partner
+                        IT Staffing · Development · SAP · DevOps · ERP · AI · Cybersecurity
                     </div>
 
                     <h1 className="mt-6 font-heading text-4xl font-black leading-[1.05] tracking-tight text-midasis-navy sm:text-5xl lg:text-6xl">
-                        Where Technology<br />
-                        <span className="orange-underline">Meets Talent</span>
+                        Technology Talent.<br />
+                        <span className="orange-underline">Technology Outcomes.</span>
                     </h1>
 
                     <p className="mt-8 max-w-xl text-base leading-relaxed text-midasis-body sm:text-lg">
-                        Midasis Technologies is a global IT staffing and consulting firm
-                        connecting top-tier technology talent with leading organizations
-                        across the United States and India. We bridge the gap between
-                        cutting-edge technology and exceptional human potential.
+                        Midasis Technologies is a full-service technology partner — placing
+                        skilled IT professionals across the US and India, and delivering
+                        projects across Application Development, SAP, DevOps, ERP, AI/ML,
+                        and Cybersecurity. One partner. Seven practice areas. 15 years of enterprise delivery.
                     </p>
 
                     <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                         <Button
-                            onClick={() => goTo("us-staffing")}
+                            onClick={() => goTo("contact")}
                             className="group h-12 rounded-full bg-midasis-blue px-7 font-semibold text-white shadow-md transition-all duration-300 hover:bg-midasis-navy hover:shadow-lg"
-                            data-testid="hero-explore-staffing-button"
+                            data-testid="hero-hire-talent-button"
                         >
-                            Explore IT Staffing
+                            <Users size={16} className="mr-2" />
+                            Hire Talent
                             <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                         </Button>
                         <Button
                             onClick={() => goTo("contact")}
                             variant="outline"
                             className="h-12 rounded-full border-2 border-midasis-blue bg-transparent px-7 font-semibold text-midasis-blue transition-all duration-300 hover:bg-midasis-blue hover:text-white"
-                            data-testid="hero-contact-button"
+                            data-testid="hero-start-project-button"
                         >
-                            Get In Touch
+                            <Code2 size={16} className="mr-2" />
+                            Start a Project
                         </Button>
                     </div>
                 </div>

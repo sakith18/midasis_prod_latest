@@ -1,8 +1,8 @@
 const STATS = [
-    { value: "Est. 2010", label: "15 Years of Excellence" },
-    { value: "200+", label: "Professionals Globally Deployed" },
+    { value: "Est. 2010", label: "15 Years of Enterprise Delivery" },
+    { value: "200+", label: "Professionals Deployed Globally" },
     { value: "1,000+", label: "Man-Years Combined Experience" },
-    { value: "2", label: "Countries — USA & India Operations" },
+    { value: "2", label: "Countries — US & India Operations" },
 ];
 
 export const About = () => {
@@ -19,30 +19,27 @@ export const About = () => {
                             Who We Are
                         </div>
                         <h2 className="mt-4 font-heading text-3xl font-bold leading-tight text-midasis-navy sm:text-4xl lg:text-5xl">
-                            A Trusted Global Technology<br />& Staffing Partner
+                            A Full-Service Technology<br />Partner Since 2010
                         </h2>
                         <div className="mt-6 h-1 w-16 rounded-full bg-midasis-orange" />
                     </div>
                     <div className="space-y-5 text-base leading-relaxed text-midasis-body">
                         <p>
-                            Founded in 2010, Midasis Technologies is a business consulting
-                            and IT staffing firm with a strong global presence across the
-                            United States and India. We specialize in connecting organizations
-                            with exceptional technology talent while delivering end-to-end IT
-                            solutions and consulting services.
+                            Founded in 2010, Midasis Technologies operates across six practice
+                            areas — IT Staffing, Application Development, SAP, DevOps, ERP, and
+                            AI/ML — serving enterprise clients across the United States and India.
                         </p>
                         <p>
-                            Our domain expertise, global best practices, and deep understanding
-                            of both US and India talent markets enable us to deliver dependable,
-                            scalable staffing solutions. With <span className="font-semibold text-midasis-navy">200+ professionals</span> and over{" "}
-                            <span className="font-semibold text-midasis-navy">1,000 man-years</span> of combined
-                            experience, Midasis helps clients stay focused on their core
-                            business while we handle their technology and talent needs.
+                            With <span className="font-semibold text-midasis-navy">200+ professionals</span> deployed
+                            and over <span className="font-semibold text-midasis-navy">1,000 man-years</span> of combined
+                            experience, we operate across three engagement models — staff augmentation,
+                            dedicated teams, and project-based SOW — so clients can choose what fits
+                            their timeline, budget, and delivery goals.
                         </p>
                     </div>
                 </div>
 
-                {/* Stats Grid */}
+                {/* Stats credibility band */}
                 <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
                     {STATS.map((stat, idx) => (
                         <div

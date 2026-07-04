@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
     Sheet,
@@ -9,14 +9,21 @@ import {
     SheetHeader,
 } from "@/components/ui/sheet";
 import Logo from "@/components/Logo";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const NAV_LINKS = [
+const PRACTICES = [
+    { label: "IT Staffing", href: "/services/it-staffing", desc: "Staff aug, contract-to-hire & permanent placement" },
+    { label: "Application Development", href: "/services/app-development", desc: "Full stack, mobile & cloud-native development" },
+    { label: "SAP", href: "/services/sap", desc: "S/4HANA, ABAP, BTP & functional consulting" },
+    { label: "DevOps", href: "/services/devops", desc: "CI/CD, cloud migration & infrastructure automation" },
+    { label: "ERP", href: "/services/erp", desc: "Implementation, integration & lifecycle support" },
+    { label: "AI / ML", href: "/services/ai-ml", desc: "GenAI, LLM integration, MLOps & data science" },
+    { label: "Cybersecurity", href: "/services/cybersecurity", desc: "VAPT, SOC, IAM, Red Teaming & compliance" },
+];
+
+const TOP_LINKS = [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
-    { label: "US IT Staffing", href: "#us-staffing" },
-    { label: "India IT Staffing", href: "#india-staffing" },
-    { label: "Cybersecurity", href: "#cybersecurity" },
-    { label: "Services", href: "#services" },
     { label: "Clients", href: "#clients" },
     { label: "Contact", href: "#contact" },
 ];
@@ -24,6 +31,10 @@ const NAV_LINKS = [
 export const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [open, setOpen] = useState(false);
+    const [servicesOpen, setServicesOpen] = useState(false);
+    const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 12);
@@ -32,11 +43,31 @@ export const Navbar = () => {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    // Close dropdown on outside click
+    useEffect(() => {
+        const handler = () => setServicesOpen(false);
+        if (servicesOpen) document.addEventListener("click", handler);
+        return () => document.removeEventListener("click", handler);
+    }, [servicesOpen]);
+
     const goTo = (href) => {
         setOpen(false);
-        const id = href.replace("#", "");
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (href.startsWith("/")) {
+            navigate(href);
+        } else {
+            if (location.pathname !== "/") {
+                navigate("/");
+                setTimeout(() => {
+                    const id = href.replace("#", "");
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 100);
+            } else {
+                const id = href.replace("#", "");
+                const el = document.getElementById(id);
+                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
     };
 
     return (
@@ -55,7 +86,56 @@ export const Navbar = () => {
 
                 {/* Desktop nav */}
                 <ul className="hidden items-center gap-1 lg:flex">
-                    {NAV_LINKS.map((link) => (
+                    {TOP_LINKS.slice(0, 2).map((link) => (
+                        <li key={link.href}>
+                            <button
+                                onClick={() => goTo(link.href)}
+                                className="px-3 py-2 text-sm font-medium text-midasis-body transition-colors duration-200 hover:text-midasis-blue"
+                                data-testid={`nav-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
+                            >
+                                {link.label}
+                            </button>
+                        </li>
+                    ))}
+
+                    {/* Services dropdown */}
+                    <li className="relative">
+                        <button
+                            onClick={(e) => { e.stopPropagation(); setServicesOpen((v) => !v); }}
+                            className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-midasis-body transition-colors duration-200 hover:text-midasis-blue"
+                            data-testid="nav-services-dropdown"
+                        >
+                            Services
+                            <ChevronDown size={14} className={`transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`} />
+                        </button>
+
+                        {servicesOpen && (
+                            <div
+                                className="absolute left-0 top-full mt-2 w-[480px] rounded-2xl border border-midasis-tint bg-white p-4 shadow-[0_8px_40px_rgba(36,120,197,0.14)]"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <div className="grid grid-cols-2 gap-2">
+                                    {PRACTICES.map((p) => (
+                                        <button
+                                            key={p.href}
+                                            onClick={() => { setServicesOpen(false); goTo(p.href); }}
+                                            className="group flex flex-col rounded-xl p-3 text-left transition-colors hover:bg-midasis-tint"
+                                            data-testid={`nav-practice-${p.label.toLowerCase().replace(/[\s/]+/g, "-")}`}
+                                        >
+                                            <span className="text-sm font-semibold text-midasis-navy group-hover:text-midasis-blue">
+                                                {p.label}
+                                            </span>
+                                            <span className="mt-0.5 text-xs leading-relaxed text-midasis-body">
+                                                {p.desc}
+                                            </span>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </li>
+
+                    {TOP_LINKS.slice(2).map((link) => (
                         <li key={link.href}>
                             <button
                                 onClick={() => goTo(link.href)}
@@ -68,10 +148,18 @@ export const Navbar = () => {
                     ))}
                 </ul>
 
-                <div className="hidden lg:block">
+                <div className="hidden items-center gap-3 lg:flex">
                     <Button
                         onClick={() => goTo("#contact")}
-                        className="rounded-full bg-midasis-blue px-6 py-2.5 font-semibold text-white shadow-md transition-all duration-300 hover:bg-midasis-navy hover:shadow-lg"
+                        variant="outline"
+                        className="h-10 rounded-full border-2 border-midasis-blue bg-transparent px-5 font-semibold text-midasis-blue transition-all duration-300 hover:bg-midasis-blue hover:text-white"
+                        data-testid="nav-start-project-button"
+                    >
+                        Start a Project
+                    </Button>
+                    <Button
+                        onClick={() => goTo("#contact")}
+                        className="rounded-full bg-midasis-blue px-5 py-2.5 font-semibold text-white shadow-md transition-all duration-300 hover:bg-midasis-navy hover:shadow-lg"
                         data-testid="nav-hire-talent-button"
                     >
                         Hire Talent
@@ -96,8 +184,8 @@ export const Navbar = () => {
                                     <Logo size="sm" />
                                 </SheetTitle>
                             </SheetHeader>
-                            <div className="flex flex-col p-4">
-                                {NAV_LINKS.map((link) => (
+                            <div className="flex flex-col overflow-y-auto p-4">
+                                {TOP_LINKS.slice(0, 2).map((link) => (
                                     <button
                                         key={link.href}
                                         onClick={() => goTo(link.href)}
@@ -107,13 +195,61 @@ export const Navbar = () => {
                                         {link.label}
                                     </button>
                                 ))}
-                                <Button
-                                    onClick={() => goTo("#contact")}
-                                    className="mt-4 w-full rounded-full bg-midasis-blue py-5 font-semibold text-white hover:bg-midasis-navy"
-                                    data-testid="mobile-hire-talent-button"
-                                >
-                                    Hire Talent
-                                </Button>
+
+                                {/* Mobile Services accordion */}
+                                <div>
+                                    <button
+                                        onClick={() => setMobileServicesOpen((v) => !v)}
+                                        className="flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-left text-base font-medium text-midasis-body transition-colors hover:bg-midasis-tint hover:text-midasis-blue"
+                                        data-testid="mobile-services-accordion"
+                                    >
+                                        Services
+                                        <ChevronDown size={16} className={`transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`} />
+                                    </button>
+                                    {mobileServicesOpen && (
+                                        <div className="mb-1 ml-4 space-y-0.5 rounded-lg border border-midasis-tint bg-midasis-tint/50 p-2">
+                                            {PRACTICES.map((p) => (
+                                                <button
+                                                    key={p.href}
+                                                    onClick={() => goTo(p.href)}
+                                                    className="block w-full rounded-md px-3 py-2.5 text-left text-sm font-semibold text-midasis-navy transition-colors hover:bg-white hover:text-midasis-blue"
+                                                    data-testid={`mobile-practice-${p.label.toLowerCase().replace(/[\s/]+/g, "-")}`}
+                                                >
+                                                    {p.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+
+                                {TOP_LINKS.slice(2).map((link) => (
+                                    <button
+                                        key={link.href}
+                                        onClick={() => goTo(link.href)}
+                                        className="rounded-lg px-4 py-3.5 text-left text-base font-medium text-midasis-body transition-colors hover:bg-midasis-tint hover:text-midasis-blue"
+                                        data-testid={`mobile-nav-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
+                                    >
+                                        {link.label}
+                                    </button>
+                                ))}
+
+                                <div className="mt-4 space-y-2">
+                                    <Button
+                                        onClick={() => goTo("#contact")}
+                                        variant="outline"
+                                        className="w-full rounded-full border-2 border-midasis-blue bg-transparent py-5 font-semibold text-midasis-blue hover:bg-midasis-blue hover:text-white"
+                                        data-testid="mobile-start-project-button"
+                                    >
+                                        Start a Project
+                                    </Button>
+                                    <Button
+                                        onClick={() => goTo("#contact")}
+                                        className="w-full rounded-full bg-midasis-blue py-5 font-semibold text-white hover:bg-midasis-navy"
+                                        data-testid="mobile-hire-talent-button"
+                                    >
+                                        Hire Talent
+                                    </Button>
+                                </div>
                             </div>
                         </SheetContent>
                     </Sheet>

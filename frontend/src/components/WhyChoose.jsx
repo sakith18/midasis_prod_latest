@@ -1,35 +1,35 @@
-import { Users, Zap, Award, ShieldCheck, Globe, Handshake } from "lucide-react";
+import { Users, Zap, Award, Globe, Layers, Handshake } from "lucide-react";
 
 const ITEMS = [
     {
         icon: Users,
         title: "Deep Talent Network",
-        desc: "Pre-vetted pool of 10,000+ technology professionals across the US and India ready for immediate deployment.",
+        desc: "10,000+ pre-vetted technology professionals across the US and India — covering staffing, SAP, DevOps, AI/ML, and ERP disciplines — ready for immediate engagement.",
     },
     {
         icon: Zap,
-        title: "Speed to Hire",
-        desc: "Average time-to-submit of 24–48 hours for most technology roles, backed by our extensive active candidate database.",
+        title: "Speed to Deliver",
+        desc: "Average 24–48 hours to submit staffing candidates. Project teams mobilized within two weeks. Midasis moves at the pace your business requires.",
     },
     {
         icon: Award,
         title: "Domain Expertise",
-        desc: "Specialized recruiters with hands-on understanding of BFSI, Healthcare, Retail, Manufacturing, and Technology sectors.",
+        desc: "Practitioners with hands-on experience in BFSI, Healthcare, Retail, Manufacturing, and Energy — not generalist recruiters or project managers applying templates.",
     },
     {
-        icon: ShieldCheck,
-        title: "Compliance & Risk Management",
-        desc: "Full compliance with US staffing regulations, visa requirements, and India labor laws — zero risk to clients.",
+        icon: Layers,
+        title: "Three Flexible Engagement Models",
+        desc: "Staff augmentation, dedicated teams, and project-based SOW — clients choose the model that matches their timeline, budget, and desired level of delivery accountability.",
     },
     {
         icon: Globe,
-        title: "Global Reach, Local Knowledge",
-        desc: "US operations in Texas + India operations in Hyderabad give us unique cross-border placement capabilities.",
+        title: "US + India Presence",
+        desc: "Headquarters in Seattle, WA and delivery operations in Hyderabad — enabling onshore client management with offshore delivery efficiency at competitive blended rates.",
     },
     {
         icon: Handshake,
-        title: "Long-Term Partnership",
-        desc: "We don't just fill positions — we build lasting relationships with clients and candidates for sustained success.",
+        title: "Long-Term Partnership Mindset",
+        desc: "Over 70% of Midasis revenue comes from repeat clients. Relationships are built on consistent delivery, transparent communication, and a willingness to adapt as client needs evolve.",
     },
 ];
 
@@ -46,7 +46,7 @@ export const WhyChoose = () => {
                         Our Edge
                     </div>
                     <h2 className="mx-auto mt-4 max-w-2xl font-heading text-3xl font-bold leading-tight text-midasis-navy sm:text-4xl lg:text-5xl">
-                        Why Global Companies Choose Midasis
+                        Why Organizations Choose Midasis
                     </h2>
                     <div className="mx-auto mt-6 h-1 w-16 rounded-full bg-midasis-orange" />
                 </div>

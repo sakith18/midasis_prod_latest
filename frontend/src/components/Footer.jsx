@@ -1,29 +1,44 @@
 import Logo from "@/components/Logo";
 import { Mail, MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const QUICK_LINKS = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "US IT Staffing", href: "#us-staffing" },
-    { label: "India IT Staffing", href: "#india-staffing" },
-    { label: "Cybersecurity", href: "#cybersecurity" },
-    { label: "Services", href: "#services" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "#home", page: true },
+    { label: "About", href: "#about", page: true },
+    { label: "Clients", href: "#clients", page: true },
+    { label: "Contact", href: "#contact", page: true },
 ];
 
-const STAFFING_LINKS = [
-    "Contract Staffing",
-    "Contract-to-Hire",
-    "Direct Placement",
-    "Offshore Staffing",
-    "BOT Model",
+const PRACTICE_LINKS = [
+    { label: "IT Staffing", href: "/services/it-staffing" },
+    { label: "Application Development", href: "/services/app-development" },
+    { label: "SAP", href: "/services/sap" },
+    { label: "DevOps", href: "/services/devops" },
+    { label: "ERP", href: "/services/erp" },
+    { label: "AI / ML", href: "/services/ai-ml" },
+    { label: "Cybersecurity", href: "/services/cybersecurity" },
 ];
 
 export const Footer = () => {
-    const goTo = (href) => {
-        const id = href.replace("#", "");
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    const navigate = useNavigate();
+
+    const goTo = (href, page) => {
+        if (!page) {
+            navigate(href);
+            return;
+        }
+        if (window.location.pathname !== "/") {
+            navigate("/");
+            setTimeout(() => {
+                const id = href.replace("#", "");
+                const el = document.getElementById(id);
+                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 100);
+        } else {
+            const id = href.replace("#", "");
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
     };
 
     return (
@@ -34,12 +49,12 @@ export const Footer = () => {
             <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-16">
                 <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
                     {/* Logo column */}
-                    <div className="lg:col-span-4">
+                    <div className="lg:col-span-3">
                         <div className="inline-block rounded-lg bg-white/95 px-4 py-3">
                             <Logo variant="dark" size="lg" />
                         </div>
                         <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/70">
-                            A trusted global IT staffing and consulting partner since 2010.
+                            A full-service technology partner — IT Staffing, Development, SAP, DevOps, ERP & AI/ML — since 2010.
                         </p>
                     </div>
 
@@ -52,7 +67,7 @@ export const Footer = () => {
                             {QUICK_LINKS.map((l) => (
                                 <li key={l.label}>
                                     <button
-                                        onClick={() => goTo(l.href)}
+                                        onClick={() => goTo(l.href, l.page)}
                                         className="text-sm text-white/75 transition-colors hover:text-white"
                                         data-testid={`footer-quick-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
                                     >
@@ -63,26 +78,28 @@ export const Footer = () => {
                         </ul>
                     </div>
 
-                    {/* Staffing */}
+                    {/* Services */}
                     <div className="lg:col-span-3">
                         <h4 className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-midasis-orange">
-                            Staffing
+                            Services
                         </h4>
                         <ul className="mt-4 space-y-2.5">
-                            {STAFFING_LINKS.map((s) => (
-                                <li
-                                    key={s}
-                                    className="text-sm text-white/75"
-                                    data-testid={`footer-staffing-${s.toLowerCase().replace(/[/\s]+/g, "-")}`}
-                                >
-                                    {s}
+                            {PRACTICE_LINKS.map((s) => (
+                                <li key={s.label}>
+                                    <button
+                                        onClick={() => navigate(s.href)}
+                                        className="text-sm text-white/75 transition-colors hover:text-white"
+                                        data-testid={`footer-service-${s.label.toLowerCase().replace(/[\s/]+/g, "-")}`}
+                                    >
+                                        {s.label}
+                                    </button>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
                     {/* Address */}
-                    <div className="lg:col-span-3">
+                    <div className="lg:col-span-4">
                         <h4 className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-midasis-orange">
                             Reach Us
                         </h4>
@@ -108,7 +125,7 @@ export const Footer = () => {
                 </div>
             </div>
 
-            {/* Bottom bar with thin blue top border */}
+            {/* Bottom bar */}
             <div className="border-t-2 border-midasis-blue/60">
                 <div className="mx-auto max-w-7xl px-6 py-5 text-center text-xs text-white/60 lg:px-8">
                     © {new Date().getFullYear()} Midasis Technologies. All Rights Reserved.
