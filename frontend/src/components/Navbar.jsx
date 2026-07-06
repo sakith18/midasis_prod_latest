@@ -14,9 +14,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 const PRACTICES = [
     { label: "IT Staffing", href: "/services/it-staffing", desc: "Staff aug, contract-to-hire & permanent placement" },
     { label: "Application Development", href: "/services/app-development", desc: "Full stack, mobile & cloud-native development" },
-    { label: "SAP", href: "/services/sap", desc: "S/4HANA, ABAP, BTP & functional consulting" },
+    { label: "ERP / SAP", href: "/services/sap", desc: "S/4HANA, ABAP, BTP, Oracle & Dynamics consulting" },
     { label: "DevOps", href: "/services/devops", desc: "CI/CD, cloud migration & infrastructure automation" },
-    { label: "ERP", href: "/services/erp", desc: "Implementation, integration & lifecycle support" },
     { label: "AI / ML", href: "/services/ai-ml", desc: "GenAI, LLM integration, MLOps & data science" },
     { label: "Cybersecurity", href: "/services/cybersecurity", desc: "VAPT, SOC, IAM, Red Teaming & compliance" },
 ];

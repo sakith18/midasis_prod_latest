@@ -13,8 +13,8 @@ const SERVICES = [
     },
     {
         icon: Database,
-        title: "SAP",
-        desc: "S/4HANA migrations, greenfield implementations, ABAP development, BTP integrations, and AMS support by certified SAP consultants.",
+        title: "ERP / SAP",
+        desc: "S/4HANA migrations, SAP functional & technical delivery, and ERP implementation across Oracle and Microsoft Dynamics — from planning through AMS.",
     },
     {
         icon: GitBranch,

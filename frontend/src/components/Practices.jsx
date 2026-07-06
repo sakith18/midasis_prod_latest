@@ -1,4 +1,4 @@
-import { Users2, Code2, Database, GitBranch, BarChart3, Brain, ShieldCheck, ArrowRight } from "lucide-react";
+import { Users2, Code2, Database, GitBranch, Brain, ShieldCheck, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const PRACTICES = [
@@ -28,14 +28,14 @@ const PRACTICES = [
     },
     {
         icon: Database,
-        title: "SAP",
+        title: "ERP / SAP",
         href: "/services/sap",
-        position: "S/4HANA migrations, greenfield implementations, ABAP development and BTP integrations.",
+        position: "S/4HANA migrations, SAP functional & technical delivery, and ERP implementation across Oracle and Microsoft Dynamics.",
         bullets: [
-            "Functional: FICO, SD, MM, HCM, PP",
-            "Technical: ABAP, BTP, Fiori, Integration Suite",
+            "SAP: FICO, SD, MM, HCM, ABAP, BTP, Fiori",
             "S/4HANA migration & upgrade programs",
-            "AMS & post-go-live support",
+            "ERP implementation: Oracle, Microsoft Dynamics",
+            "System integration, data migration & AMS",
         ],
     },
     {
@@ -48,18 +48,6 @@ const PRACTICES = [
             "IaC: Terraform, Ansible, Pulumi",
             "Cloud migration: AWS, Azure, GCP",
             "Observability: Prometheus, Grafana, ELK stack",
-        ],
-    },
-    {
-        icon: BarChart3,
-        title: "ERP",
-        href: "/services/erp",
-        position: "End-to-end ERP implementation, integration and lifecycle support across major platforms.",
-        bullets: [
-            "ERP planning, implementation & go-live",
-            "Cross-platform integration & data migration",
-            "Post-implementation optimization & AMS",
-            "SAP, Oracle, Microsoft Dynamics coverage",
         ],
     },
     {
@@ -103,7 +91,7 @@ export const Practices = () => {
                         Our Practice Areas
                     </div>
                     <h2 className="mx-auto mt-4 max-w-3xl font-heading text-3xl font-bold leading-tight text-midasis-navy sm:text-4xl lg:text-5xl">
-                        Seven Practices. One Technology Partner.
+                        Six Practices. One Technology Partner.
                     </h2>
                     <div className="mx-auto mt-6 h-1 w-16 rounded-full bg-midasis-orange" />
                     <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-midasis-body">

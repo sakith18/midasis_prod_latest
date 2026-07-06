@@ -152,23 +152,6 @@ export const PracticePage = ({
                 </div>
             </section>
 
-            {/* Case Study Placeholder */}
-            <section className="bg-midasis-tint py-[48px] lg:py-[80px]">
-                <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-midasis-orange">
-                        Client Outcomes
-                    </div>
-                    <h2 className="font-heading text-2xl font-bold text-midasis-navy sm:text-3xl lg:text-4xl">
-                        Case Studies
-                    </h2>
-                    <div className="mt-8 rounded-2xl border-2 border-dashed border-midasis-blue/30 bg-white p-10 text-center">
-                        <p className="text-sm italic leading-relaxed text-midasis-body/60">
-                            {caseStudyPlaceholder || "[Client outcome / metric to be added — contact us to discuss a similar engagement]"}
-                        </p>
-                    </div>
-                </div>
-            </section>
-
             {/* Bottom CTA banner */}
             <section className="relative overflow-hidden bg-midasis-blue py-[48px] lg:py-[64px]">
                 <div

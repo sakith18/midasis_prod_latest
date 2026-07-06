@@ -9,6 +9,8 @@ const TRUST_NAMES = [
     "Discover",
     "Zurich",
     "Fannie Mae",
+    "Comtek",
+    "Topgraph",
 ];
 
 const TechGlobe = () => (
@@ -75,12 +77,12 @@ export const Hero = () => {
                 {/* Left content */}
                 <div className="fade-up">
                     <div className="inline-flex items-center gap-2 rounded-full bg-midasis-tint px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-midasis-blue">
-                        IT Staffing · Development · SAP · DevOps · ERP · AI · Cybersecurity
+                        Where Technology Meets Talent
                     </div>
 
                     <h1 className="mt-6 font-heading text-4xl font-black leading-[1.05] tracking-tight text-midasis-navy sm:text-5xl lg:text-6xl">
-                        Technology Talent.<br />
-                        <span className="orange-underline">Technology Outcomes.</span>
+                        The Right People.<br />
+                        <span className="orange-underline">The Right Outcomes.</span>
                     </h1>
 
                     <p className="mt-8 max-w-xl text-base leading-relaxed text-midasis-body sm:text-lg">

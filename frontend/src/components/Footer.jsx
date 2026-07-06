@@ -12,7 +12,7 @@ const QUICK_LINKS = [
 const PRACTICE_LINKS = [
     { label: "IT Staffing", href: "/services/it-staffing" },
     { label: "Application Development", href: "/services/app-development" },
-    { label: "SAP", href: "/services/sap" },
+    { label: "ERP / SAP", href: "/services/sap" },
     { label: "DevOps", href: "/services/devops" },
     { label: "ERP", href: "/services/erp" },
     { label: "AI / ML", href: "/services/ai-ml" },
@@ -49,12 +49,12 @@ export const Footer = () => {
             <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-16">
                 <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
                     {/* Logo column */}
-                    <div className="lg:col-span-3">
+                    <div className="lg:col-span-4">
                         <div className="inline-block rounded-lg bg-white/95 px-4 py-3">
                             <Logo variant="dark" size="lg" />
                         </div>
-                        <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/70">
-                            A full-service technology partner — IT Staffing, Development, SAP, DevOps, ERP & AI/ML — since 2010.
+                        <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/70">
+                            Where Technology Meets Talent — IT Staffing, Development, SAP, DevOps, ERP, AI/ML & Cybersecurity since 2010.
                         </p>
                     </div>
 

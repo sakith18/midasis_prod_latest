@@ -6,6 +6,8 @@ const CLIENTS = [
     "Discover",
     "Zurich",
     "Fannie Mae",
+    "Comtek",
+    "Topgraph",
 ];
 
 export const Clients = () => {
