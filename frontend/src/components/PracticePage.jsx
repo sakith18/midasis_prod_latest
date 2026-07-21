@@ -31,7 +31,7 @@ export const PracticePage = ({
 }) => {
     const navigate = useNavigate();
 
-    const goContact = () => navigate("/#contact");
+    const goContact = () => navigate("/contact");
 
     return (
         <div className="min-h-screen bg-white font-body text-midasis-body">

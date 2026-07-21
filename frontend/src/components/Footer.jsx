@@ -6,7 +6,7 @@ const QUICK_LINKS = [
     { label: "Home", href: "#home", page: true },
     { label: "About", href: "#about", page: true },
     { label: "Clients", href: "#clients", page: true },
-    { label: "Contact", href: "#contact", page: true },
+    { label: "Contact Us", href: "/contact", page: false },
 ];
 
 const PRACTICE_LINKS = [
@@ -14,9 +14,13 @@ const PRACTICE_LINKS = [
     { label: "Application Development", href: "/services/app-development" },
     { label: "ERP / SAP", href: "/services/sap" },
     { label: "DevOps", href: "/services/devops" },
-    { label: "ERP", href: "/services/erp" },
     { label: "AI / ML", href: "/services/ai-ml" },
     { label: "Cybersecurity", href: "/services/cybersecurity" },
+];
+
+const LEGAL_LINKS = [
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms & Conditions", href: "/terms-conditions" },
 ];
 
 export const Footer = () => {
@@ -48,6 +52,7 @@ export const Footer = () => {
         >
             <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-16">
                 <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+
                     {/* Logo column */}
                     <div className="lg:col-span-4">
                         <div className="inline-block rounded-lg bg-white/95 px-4 py-3">
@@ -76,10 +81,28 @@ export const Footer = () => {
                                 </li>
                             ))}
                         </ul>
+
+                        {/* Legal */}
+                        <h4 className="mt-8 font-heading text-xs font-bold uppercase tracking-[0.2em] text-midasis-orange">
+                            Legal
+                        </h4>
+                        <ul className="mt-4 space-y-2.5">
+                            {LEGAL_LINKS.map((l) => (
+                                <li key={l.label}>
+                                    <button
+                                        onClick={() => navigate(l.href)}
+                                        className="text-sm text-white/75 transition-colors hover:text-white"
+                                        data-testid={`footer-legal-${l.label.toLowerCase().replace(/[\s&]+/g, "-")}`}
+                                    >
+                                        {l.label}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
                     {/* Services */}
-                    <div className="lg:col-span-3">
+                    <div className="lg:col-span-2">
                         <h4 className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-midasis-orange">
                             Services
                         </h4>
@@ -106,7 +129,11 @@ export const Footer = () => {
                         <div className="mt-4 space-y-4">
                             <div className="flex items-start gap-2.5 text-sm text-white/75">
                                 <MapPin size={16} className="mt-0.5 flex-shrink-0 text-midasis-blue" />
-                                <span>2815 2nd Ave, Suite 550, Office No. 518, Register 09, Seattle, WA 98121, United States <span className="ml-1 text-midasis-orange font-semibold">(HQ)</span></span>
+                                <span>
+                                    2815 2nd Ave, Suite 550, Office No. 518, Register 09,
+                                    Seattle, WA 98121, United States{" "}
+                                    <span className="text-midasis-orange font-semibold">(HQ)</span>
+                                </span>
                             </div>
                             <div className="flex items-start gap-2.5 text-sm text-white/75">
                                 <MapPin size={16} className="mt-0.5 flex-shrink-0 text-midasis-blue" />
@@ -122,13 +149,25 @@ export const Footer = () => {
                             </a>
                         </div>
                     </div>
+
                 </div>
             </div>
 
             {/* Bottom bar */}
             <div className="border-t-2 border-midasis-blue/60">
-                <div className="mx-auto max-w-7xl px-6 py-5 text-center text-xs text-white/60 lg:px-8">
-                    © {new Date().getFullYear()} Midasis Technologies. All Rights Reserved.
+                <div className="mx-auto max-w-7xl flex flex-col items-center justify-between gap-3 px-6 py-5 text-xs text-white/60 sm:flex-row lg:px-8">
+                    <span>© {new Date().getFullYear()} Midasis Technologies. All Rights Reserved.</span>
+                    <div className="flex items-center gap-4">
+                        {LEGAL_LINKS.map((l) => (
+                            <button
+                                key={l.label}
+                                onClick={() => navigate(l.href)}
+                                className="transition-colors hover:text-white"
+                            >
+                                {l.label}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
         </footer>

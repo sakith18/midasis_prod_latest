@@ -24,7 +24,7 @@ const TOP_LINKS = [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
     { label: "Clients", href: "#clients" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "/contact", isPage: true },
 ];
 
 export const Navbar = () => {
@@ -49,9 +49,9 @@ export const Navbar = () => {
         return () => document.removeEventListener("click", handler);
     }, [servicesOpen]);
 
-    const goTo = (href) => {
+    const goTo = (href, isPage) => {
         setOpen(false);
-        if (href.startsWith("/")) {
+        if (isPage || href.startsWith("/")) {
             navigate(href);
         } else {
             if (location.pathname !== "/") {
@@ -88,7 +88,7 @@ export const Navbar = () => {
                     {TOP_LINKS.slice(0, 2).map((link) => (
                         <li key={link.href}>
                             <button
-                                onClick={() => goTo(link.href)}
+                                onClick={() => goTo(link.href, link.isPage)}
                                 className="px-3 py-2 text-sm font-medium text-midasis-body transition-colors duration-200 hover:text-midasis-blue"
                                 data-testid={`nav-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
                             >
@@ -137,7 +137,7 @@ export const Navbar = () => {
                     {TOP_LINKS.slice(2).map((link) => (
                         <li key={link.href}>
                             <button
-                                onClick={() => goTo(link.href)}
+                                onClick={() => goTo(link.href, link.isPage)}
                                 className="px-3 py-2 text-sm font-medium text-midasis-body transition-colors duration-200 hover:text-midasis-blue"
                                 data-testid={`nav-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
                             >
@@ -149,7 +149,7 @@ export const Navbar = () => {
 
                 <div className="hidden items-center gap-3 lg:flex">
                     <Button
-                        onClick={() => goTo("#contact")}
+                        onClick={() => goTo("/contact", true)}
                         variant="outline"
                         className="h-10 rounded-full border-2 border-midasis-blue bg-transparent px-5 font-semibold text-midasis-blue transition-all duration-300 hover:bg-midasis-blue hover:text-white"
                         data-testid="nav-start-project-button"
@@ -157,7 +157,7 @@ export const Navbar = () => {
                         Start a Project
                     </Button>
                     <Button
-                        onClick={() => goTo("#contact")}
+                        onClick={() => goTo("/contact", true)}
                         className="rounded-full bg-midasis-blue px-5 py-2.5 font-semibold text-white shadow-md transition-all duration-300 hover:bg-midasis-navy hover:shadow-lg"
                         data-testid="nav-hire-talent-button"
                     >
@@ -187,7 +187,7 @@ export const Navbar = () => {
                                 {TOP_LINKS.slice(0, 2).map((link) => (
                                     <button
                                         key={link.href}
-                                        onClick={() => goTo(link.href)}
+                                        onClick={() => goTo(link.href, link.isPage)}
                                         className="rounded-lg px-4 py-3.5 text-left text-base font-medium text-midasis-body transition-colors hover:bg-midasis-tint hover:text-midasis-blue"
                                         data-testid={`mobile-nav-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
                                     >
@@ -224,7 +224,7 @@ export const Navbar = () => {
                                 {TOP_LINKS.slice(2).map((link) => (
                                     <button
                                         key={link.href}
-                                        onClick={() => goTo(link.href)}
+                                        onClick={() => goTo(link.href, link.isPage)}
                                         className="rounded-lg px-4 py-3.5 text-left text-base font-medium text-midasis-body transition-colors hover:bg-midasis-tint hover:text-midasis-blue"
                                         data-testid={`mobile-nav-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
                                     >
@@ -234,7 +234,7 @@ export const Navbar = () => {
 
                                 <div className="mt-4 space-y-2">
                                     <Button
-                                        onClick={() => goTo("#contact")}
+                                        onClick={() => goTo("/contact", true)}
                                         variant="outline"
                                         className="w-full rounded-full border-2 border-midasis-blue bg-transparent py-5 font-semibold text-midasis-blue hover:bg-midasis-blue hover:text-white"
                                         data-testid="mobile-start-project-button"
@@ -242,7 +242,7 @@ export const Navbar = () => {
                                         Start a Project
                                     </Button>
                                     <Button
-                                        onClick={() => goTo("#contact")}
+                                        onClick={() => goTo("/contact", true)}
                                         className="w-full rounded-full bg-midasis-blue py-5 font-semibold text-white hover:bg-midasis-navy"
                                         data-testid="mobile-hire-talent-button"
                                     >

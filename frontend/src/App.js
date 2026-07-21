@@ -8,6 +8,9 @@ import SAP from "@/pages/SAP";
 import DevOps from "@/pages/DevOps";
 import AIML from "@/pages/AIML";
 import CyberSecurity from "@/pages/CyberSecurity";
+import ContactPage from "@/pages/ContactPage";
+import TermsConditions from "@/pages/TermsConditions";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
 
 function App() {
     return (
@@ -21,8 +24,11 @@ function App() {
                     <Route path="/services/devops" element={<DevOps />} />
                     <Route path="/services/ai-ml" element={<AIML />} />
                     <Route path="/services/cybersecurity" element={<CyberSecurity />} />
-                    {/* Legacy ERP route redirects to SAP */}
                     <Route path="/services/erp" element={<SAP />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/contact-us" element={<ContactPage />} />
+                    <Route path="/terms-conditions" element={<TermsConditions />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 </Routes>
             </BrowserRouter>
             <Toaster

@@ -6,7 +6,7 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
-from typing import List, Literal
+from typing import List, Literal, Optional
 import uuid
 from datetime import datetime, timezone
 
@@ -41,14 +41,20 @@ class StatusCheckCreate(BaseModel):
 class ContactSubmissionCreate(BaseModel):
     name: str = Field(..., min_length=1, max_length=120)
     email: EmailStr
+    phone: Optional[str] = Field(None, max_length=30)
     subject: str = Field(..., min_length=1, max_length=200)
     requirement_type: Literal[
-        "US IT Staffing",
-        "India IT Staffing",
-        "IT Consulting",
+        "IT Staffing — Hire Talent",
+        "Application Development — Start a Project",
+        "SAP Consulting",
+        "DevOps Consulting",
+        "ERP Consulting",
+        "AI / ML Engagement",
+        "Cybersecurity",
         "General Inquiry",
     ]
     message: str = Field(..., min_length=1, max_length=4000)
+    sms_opt_in: bool = False
 
 
 class ContactSubmission(BaseModel):
@@ -56,9 +62,11 @@ class ContactSubmission(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
     email: str
+    phone: Optional[str] = None
     subject: str
     requirement_type: str
     message: str
+    sms_opt_in: bool = False
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
@@ -93,9 +101,11 @@ async def submit_contact(payload: ContactSubmissionCreate):
         submission = ContactSubmission(
             name=payload.name.strip(),
             email=str(payload.email).strip(),
+            phone=payload.phone.strip() if payload.phone else None,
             subject=payload.subject.strip(),
             requirement_type=payload.requirement_type,
             message=payload.message.strip(),
+            sms_opt_in=payload.sms_opt_in,
         )
         doc = submission.model_dump()
         doc['created_at'] = doc['created_at'].isoformat()
