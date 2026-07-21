@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { MapPin, Mail, Send, Loader2, Phone } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -17,6 +17,13 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
+
+// ── EmailJS config ──────────────────────────────────────────────
+// Sign up free at https://emailjs.com, connect Gmail, then paste your keys:
+const EMAILJS_SERVICE_ID  = service_xot4964  || "";
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || "";
+const EMAILJS_PUBLIC_KEY  = vHZgNcX43TCczwkn5  || "";
+// ────────────────────────────────────────────────────────────────
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -77,22 +84,27 @@ export default function ContactPage() {
         }
         setSubmitting(true);
         try {
-            await axios.post(`${API}/contact`, {
-                name: form.name,
-                email: form.email,
-                phone: form.phone || null,
-                subject: form.subject,
-                requirement_type: form.requirement_type,
-                message: form.message,
-                sms_opt_in: smsOptIn,
-            });
+            await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                {
+                    from_name:        form.name,
+                    from_email:       form.email,
+                    phone:            form.phone || "Not provided",
+                    subject:          form.subject,
+                    requirement_type: form.requirement_type,
+                    message:          form.message,
+                    sms_opt_in:       smsOptIn ? "Yes" : "No",
+                    to_email:         "sakithreddy@gmail.com",
+                },
+                EMAILJS_PUBLIC_KEY
+            );
             toast.success("Thank you! Your message has been sent. We'll be in touch shortly.");
             setForm({ name: "", email: "", phone: "", subject: "", requirement_type: "", message: "" });
             setSmsOptIn(false);
         } catch (err) {
             console.error(err);
-            const msg = err?.response?.data?.detail || "Something went wrong. Please try again.";
-            toast.error(typeof msg === "string" ? msg : "Submission failed. Please try again.");
+            toast.error("Something went wrong. Please try again or email us directly.");
         } finally {
             setSubmitting(false);
         }
