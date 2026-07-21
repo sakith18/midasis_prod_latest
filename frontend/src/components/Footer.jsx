@@ -7,6 +7,8 @@ const QUICK_LINKS = [
     { label: "About", href: "#about", page: true },
     { label: "Clients", href: "#clients", page: true },
     { label: "Contact Us", href: "/contact", page: false },
+    { label: "Privacy Policy", href: "/privacy-policy", page: false },
+    { label: "Terms & Conditions", href: "/terms-conditions", page: false },
 ];
 
 const PRACTICE_LINKS = [
@@ -51,10 +53,10 @@ export const Footer = () => {
             className="relative bg-midasis-navy text-white"
         >
             <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-16">
-                <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+                <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-8">
 
-                    {/* Logo column */}
-                    <div className="lg:col-span-4">
+                    {/* Col 1 — Logo + tagline (4 cols) */}
+                    <div className="sm:col-span-2 lg:col-span-4">
                         <div className="inline-block rounded-lg bg-white/95 px-4 py-3">
                             <Logo variant="dark" size="lg" />
                         </div>
@@ -63,13 +65,18 @@ export const Footer = () => {
                         </p>
                     </div>
 
-                    {/* Quick Links */}
+                    {/* Col 2 — Quick Links (2 cols) */}
                     <div className="lg:col-span-2">
                         <h4 className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-midasis-orange">
                             Quick Links
                         </h4>
                         <ul className="mt-4 space-y-2.5">
-                            {QUICK_LINKS.map((l) => (
+                            {[
+                                { label: "Home", href: "#home", page: true },
+                                { label: "About", href: "#about", page: true },
+                                { label: "Clients", href: "#clients", page: true },
+                                { label: "Contact Us", href: "/contact", page: false },
+                            ].map((l) => (
                                 <li key={l.label}>
                                     <button
                                         onClick={() => goTo(l.href, l.page)}
@@ -82,7 +89,6 @@ export const Footer = () => {
                             ))}
                         </ul>
 
-                        {/* Legal */}
                         <h4 className="mt-8 font-heading text-xs font-bold uppercase tracking-[0.2em] text-midasis-orange">
                             Legal
                         </h4>
@@ -101,8 +107,8 @@ export const Footer = () => {
                         </ul>
                     </div>
 
-                    {/* Services */}
-                    <div className="lg:col-span-2">
+                    {/* Col 3 — Services (3 cols) */}
+                    <div className="lg:col-span-3">
                         <h4 className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-midasis-orange">
                             Services
                         </h4>
@@ -121,8 +127,8 @@ export const Footer = () => {
                         </ul>
                     </div>
 
-                    {/* Address */}
-                    <div className="lg:col-span-4">
+                    {/* Col 4 — Reach Us (3 cols) */}
+                    <div className="lg:col-span-3">
                         <h4 className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-midasis-orange">
                             Reach Us
                         </h4>
@@ -130,9 +136,9 @@ export const Footer = () => {
                             <div className="flex items-start gap-2.5 text-sm text-white/75">
                                 <MapPin size={16} className="mt-0.5 flex-shrink-0 text-midasis-blue" />
                                 <span>
-                                    2815 2nd Ave, Suite 550, Office No. 518, Register 09,
-                                    Seattle, WA 98121, United States{" "}
-                                    <span className="text-midasis-orange font-semibold">(HQ)</span>
+                                    2815 2nd Ave, Suite 550, Office No. 518,
+                                    Seattle, WA 98121, USA{" "}
+                                    <span className="font-semibold text-midasis-orange">(HQ)</span>
                                 </span>
                             </div>
                             <div className="flex items-start gap-2.5 text-sm text-white/75">
@@ -155,7 +161,7 @@ export const Footer = () => {
 
             {/* Bottom bar */}
             <div className="border-t-2 border-midasis-blue/60">
-                <div className="mx-auto max-w-7xl flex flex-col items-center justify-between gap-3 px-6 py-5 text-xs text-white/60 sm:flex-row lg:px-8">
+                <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-5 text-xs text-white/60 sm:flex-row lg:px-8">
                     <span>© {new Date().getFullYear()} Midasis Technologies. All Rights Reserved.</span>
                     <div className="flex items-center gap-4">
                         {LEGAL_LINKS.map((l) => (
