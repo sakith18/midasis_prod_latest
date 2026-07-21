@@ -9,6 +9,9 @@ from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Literal, Optional
 import uuid
 from datetime import datetime, timezone
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import aiosmtplib
 
 
 ROOT_DIR = Path(__file__).parent
@@ -24,6 +27,75 @@ app = FastAPI()
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
+
+
+# ============= Email =============
+NOTIFY_EMAIL = "sakithreddy@gmail.com"
+
+async def send_contact_email(submission: "ContactSubmission") -> None:
+    """Send notification email to NOTIFY_EMAIL when a contact form is submitted."""
+    smtp_host = os.environ.get("SMTP_HOST", "")
+    smtp_port = int(os.environ.get("SMTP_PORT", "587"))
+    smtp_user = os.environ.get("SMTP_USER", "")
+    smtp_pass = os.environ.get("SMTP_PASS", "")
+
+    if not smtp_host or not smtp_user or not smtp_pass:
+        logger.warning("SMTP not configured — skipping email notification.")
+        return
+
+    sms_status = "Yes ✓" if submission.sms_opt_in else "No"
+    phone_display = submission.phone or "Not provided"
+
+    html_body = f"""
+    <html><body style="font-family:Arial,sans-serif;color:#333;max-width:600px;margin:0 auto;">
+      <div style="background:#0D2B4E;padding:20px 30px;border-radius:8px 8px 0 0;">
+        <h2 style="color:#fff;margin:0;">New Contact Form Submission</h2>
+        <p style="color:#2478C5;margin:4px 0 0;">Midasis Technologies Website</p>
+      </div>
+      <div style="border:1px solid #ddd;border-top:none;padding:24px 30px;border-radius:0 0 8px 8px;">
+        <table style="width:100%;border-collapse:collapse;">
+          <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;width:160px;color:#666;font-size:13px;">Name</td>
+              <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:bold;">{submission.name}</td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;color:#666;font-size:13px;">Email</td>
+              <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;"><a href="mailto:{submission.email}">{submission.email}</a></td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;color:#666;font-size:13px;">Phone</td>
+              <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{phone_display}</td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;color:#666;font-size:13px;">Subject</td>
+              <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{submission.subject}</td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;color:#666;font-size:13px;">Requirement</td>
+              <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{submission.requirement_type}</td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;color:#666;font-size:13px;">SMS Opt-In</td>
+              <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{sms_status}</td></tr>
+          <tr><td style="padding:8px 0;color:#666;font-size:13px;vertical-align:top;">Message</td>
+              <td style="padding:8px 0;white-space:pre-wrap;">{submission.message}</td></tr>
+        </table>
+        <p style="margin-top:24px;font-size:12px;color:#999;">
+          Submitted: {submission.created_at.strftime("%B %d, %Y at %I:%M %p UTC")}
+        </p>
+      </div>
+    </body></html>
+    """
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = f"[Midasis] New Inquiry: {submission.subject} — {submission.requirement_type}"
+    msg["From"] = smtp_user
+    msg["To"] = NOTIFY_EMAIL
+    msg["Reply-To"] = submission.email
+    msg.attach(MIMEText(html_body, "html"))
+
+    try:
+        await aiosmtplib.send(
+            msg,
+            hostname=smtp_host,
+            port=smtp_port,
+            username=smtp_user,
+            password=smtp_pass,
+            start_tls=True,
+        )
+        logger.info(f"Contact notification email sent for submission {submission.id}")
+    except Exception as e:
+        logger.error(f"Failed to send contact notification email: {e}")
+        # Don't raise — email failure should not block form submission
 
 
 # ============= Models =============
@@ -110,6 +182,8 @@ async def submit_contact(payload: ContactSubmissionCreate):
         doc = submission.model_dump()
         doc['created_at'] = doc['created_at'].isoformat()
         await db.contact_submissions.insert_one(doc)
+        # Send email notification (non-blocking — failure won't affect response)
+        await send_contact_email(submission)
         return submission
     except Exception as e:
         logger.error(f"Error saving contact submission: {e}")
