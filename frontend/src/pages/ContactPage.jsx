@@ -20,12 +20,10 @@ import { Link } from "react-router-dom";
 
 // ── EmailJS config ──────────────────────────────────────────────
 // Sign up free at https://emailjs.com, connect Gmail, then paste your keys:
-const EMAILJS_SERVICE_ID  = service_xot4964  || "";
-const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || "";
-const EMAILJS_PUBLIC_KEY  = vHZgNcX43TCczwkn5  || "";
-// ────────────────────────────────────────────────────────────────
+const EMAILJS_SERVICE_ID  = process.env.REACT_APP_EMAILJS_SERVICE_ID  || "service_xot4964";
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || "template_sxvytdl";
+const EMAILJS_PUBLIC_KEY  = process.env.REACT_APP_EMAILJS_PUBLIC_KEY  || "vHZgNcX43TCczwkn5";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const OFFICES = [
     {

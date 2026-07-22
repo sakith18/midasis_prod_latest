@@ -6,7 +6,6 @@ import WhyChoose from "@/components/WhyChoose";
 import Services from "@/components/Services";
 import Vision from "@/components/Vision";
 import Clients from "@/components/Clients";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -20,7 +19,6 @@ export default function Home() {
             <Services />
             <Vision />
             <Clients />
-            <Contact />
             <Footer />
         </main>
     );
